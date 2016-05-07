@@ -13,15 +13,16 @@ import scalaz.concurrent.Task
 object SimpleService {
   val service = HttpService {
 
-    case GET -> Root / "wut" =>
-      StaticFile.fromResource("/wut.js")
-        .map(Task.now)
-        .getOrElse(Ok("Yooooooo."))
-
     case GET -> Root =>
       StaticFile.fromResource("/index.html")
         .map(Task.now)
         .getOrElse(Ok("Nooooooo."))
+
+//  goes to "resources" folder to retrieve requested static file
+    case GET -> path =>
+      StaticFile.fromResource(path.toString)
+        .map(Task.now)
+        .getOrElse(Ok("Yooooooo."))
   }
 }
 
