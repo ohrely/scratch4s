@@ -4,6 +4,8 @@ package appy
   * Created by rely10 on 4/25/16.
   */
 
+import FunkyUtil.beFunky
+
 import org.http4s._
 import org.http4s.dsl._
 import org.http4s.server.blaze.BlazeBuilder
@@ -22,6 +24,7 @@ object SimpleService {
 
   def service = HttpService {
     case req @ GET -> Root =>
+      beFunky()
       fetchStatic("src/main/resources/index.html", req)
 
     case req @ GET -> Root / "dag" =>
