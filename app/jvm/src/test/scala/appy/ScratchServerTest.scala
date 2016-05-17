@@ -1,7 +1,6 @@
 package appy
 
 import org.scalatest.FunSuite
-import ScratchServer._
 import org.http4s.{Method, Request, Response}
 import org.http4s.Uri._
 import org.http4s.Method._
