@@ -1,7 +1,7 @@
 package appy
 
 import org.scalatest.FunSuite
-import SimpleServer._
+import ScratchServer._
 import org.http4s.{Method, Request, Response}
 import org.http4s.Uri._
 import org.http4s.Method._
@@ -13,7 +13,7 @@ import scalaz.concurrent.{Future, Task}
 /**
   * Created by rely10 on 5/11/16.
   */
-class SimpleServerTest extends FunSuite {
+class ScratchServerTest extends FunSuite {
   test("yes"){
     val testUri: String = "http://127.0.0.1:8080/dag"
 

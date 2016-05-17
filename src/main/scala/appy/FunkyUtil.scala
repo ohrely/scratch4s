@@ -18,4 +18,8 @@ object FunkyUtil {
 
     println(stringResp(funkyUri).run.mkString)
   }
+
+  def main(args: Array[String]) {
+    beFunky()
+  }
 }

@@ -16,3 +16,5 @@ libraryDependencies ++= Seq(
 
   "ch.qos.logback" % "logback-classic" % "1.0.3"
 )
+
+//(resources in Compile) += (fastOptJS in (appJS, Compile)).value.data

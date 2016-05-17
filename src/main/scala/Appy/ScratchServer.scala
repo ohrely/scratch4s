@@ -12,7 +12,7 @@ import org.http4s.server.blaze.BlazeBuilder
 
 import scalaz.concurrent.Task
 
-object SimpleService {
+object ScratchService {
   def fetchStatic(path: String, req: Request) = {
     StaticFile.fromString(path, Some(req))
       .map(Task.now)
@@ -41,10 +41,10 @@ object SimpleService {
   }
 }
 
-object SimpleServer {
+object ScratchServer {
   def main(args: Array[String]) = BlazeBuilder
     .bindHttp(8080)
-    .mountService(SimpleService.service, "/")
+    .mountService(ScratchService.service, "/")
     .run
     .awaitShutdown()
 }
