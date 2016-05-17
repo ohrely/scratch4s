@@ -25,15 +25,19 @@ object ScratchService {
   def service = HttpService {
     case req @ GET -> Root =>
       println(System.getProperty("user.dir"))
-      beFunky()
+      beFunky() // calls FunkyUtil, which in turn makes another request to this server (/dag)
       fetchStatic("app/jvm/src/main/resources/index.html", req)
 
     case req @ GET -> Root / "dag" =>
-      println("So. It is down to you, and it is down to me.")
-      Ok(nongraph)
+      println("So. It is down to you, and it is down to me.") // prints to terminal
+      Ok(nongraph) // appears in browser
 
+    // when scala.js output is written to shared resources, this will change
     case req @ GET -> path =>
-      fetchStatic("app/jvm/src/main/resources" + path.toString, req)
+      fetchStatic("app/js/target/scala-2.11" + path.toString, req)
+
+//    case req @ GET -> path =>
+//      fetchStatic("app/jvm/src/main/resources" + path.toString, req)
 
     //    case req @ GET -> Root / "slow-body" =>
     //      val resp = "Hello world!".map(_.toString())

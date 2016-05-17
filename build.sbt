@@ -27,7 +27,7 @@ val app = crossProject.settings(
     "org.http4s" %% "http4s-blaze-server" % http4sVersion,
     "org.http4s" %% "http4s-blaze-client" % http4sVersion
   )
-)
+).enablePlugins(ScalaJSPlugin)
 
 lazy val appJS = app.js
 lazy val appJVM = app.jvm.settings(

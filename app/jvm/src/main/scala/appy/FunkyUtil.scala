@@ -1,6 +1,6 @@
 package appy
 
-import org.http4s.client.blaze._
+//import org.http4s.client.blaze._
 
 import scalaz.concurrent.Task
 import org.http4s.client.blaze.{defaultClient => client}
