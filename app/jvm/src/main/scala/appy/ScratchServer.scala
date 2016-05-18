@@ -14,7 +14,7 @@ import scalaz.concurrent.Task
 
 object ScratchService {
   def fetchStatic(path: String, req: Request) = {
-    StaticFile.fromString(path, Some(req))
+    StaticFile.fromResource(path, Some(req))
       .map(Task.now)
       .getOrElse(Ok("Nooooooo."))
     //  .getOrElse(NotFound())
@@ -26,15 +26,14 @@ object ScratchService {
     case req @ GET -> Root =>
       println(System.getProperty("user.dir"))
       beFunky() // calls FunkyUtil, which in turn makes another request to this server (/dag)
-      fetchStatic("app/jvm/src/main/resources/index.html", req)
+      fetchStatic("/index.html", req)
 
     case req @ GET -> Root / "dag" =>
       println("So. It is down to you, and it is down to me.") // prints to terminal
       Ok(nongraph) // appears in browser
 
-    // when scala.js output is written to shared resources, this will change
     case req @ GET -> path =>
-      fetchStatic("app/js/target/scala-2.11" + path.toString, req)
+      fetchStatic(path.toString, req)
 
 //    case req @ GET -> path =>
 //      fetchStatic("app/jvm/src/main/resources" + path.toString, req)

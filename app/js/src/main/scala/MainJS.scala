@@ -1,5 +1,4 @@
 import scala.scalajs.js
-import org.scalajs.dom
 import org.scalajs.dom._
 
 /**

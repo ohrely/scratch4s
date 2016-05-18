@@ -12,7 +12,6 @@ val app = crossProject.settings(
   libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest" % "2.2.1" % "test" withSources(),
     "com.lihaoyi" %%% "scalatags" % "0.4.6",
-
     "ch.qos.logback" % "logback-classic" % "1.0.3"
   ),
   scalaVersion := "2.11.5"
@@ -31,5 +30,9 @@ val app = crossProject.settings(
 
 lazy val appJS = app.js
 lazy val appJVM = app.jvm.settings(
-  (resources in Compile) += (fastOptJS in (appJS, Compile)).value.data
+  (resources in Compile) ++= Seq(
+    (fastOptJS in (appJS, Compile)).value.data,
+    (fullOptJS in (appJS, Compile)).value.data
+  )
 )
+// to consider later: https://groups.google.com/forum/#!topic/scala-js/SSKxkxvL5bo
